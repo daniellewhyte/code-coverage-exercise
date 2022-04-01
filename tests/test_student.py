@@ -1,4 +1,5 @@
 from student.student import Student, get_student_with_more_classes
+import pytest 
 
 def test_init():
     name = "Ada Lovelace"
@@ -52,3 +53,16 @@ def test_get_student_with_more_classes():
     )
 
     # TODO: write assertions
+
+    assert get_student_with_more_classes(ada, charles) == ada
+    assert get_student_with_more_classes(charles, ada) == ada
+
+
+def test_pass_nonlist_for_courses_param():
+
+    ada = Student("Ada Lovelace", "sophmore", "mathematics")
+
+    with pytest.raises(AttributeError): ada.courses.add_class("Gym")
+
+
+
